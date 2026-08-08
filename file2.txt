@@ -1,0 +1,335 @@
+this is my second file, Now 
+
+Use your name:
+
+git config --global user.name "Your Name"
+
+Example:
+
+git config --global user.name "Avyan Kandwal"
+Step 4: Set your GitHub email
+
+Use the email associated with your GitHub account:
+
+git config --global user.email "your-email@gmail.com"
+Step 5: Check it
+git config --list
+
+Or:
+
+git config --global user.name
+git config --global user.email
+
+You should see your name and email.
+
+PART 4 — Create a Git repository
+Step 6: Make sure you're in the correct directory
+
+Run:
+
+pwd
+
+Then:
+
+ls
+
+Make sure you can see:
+
+file1
+Step 7: Initialize Git
+
+Run:
+
+git init -b main
+
+You should see something similar to:
+
+Initialized empty Git repository...
+
+GitHub's current documentation recommends initializing the local repository and using main as the branch.
+
+PART 5 — Check Git status
+Step 8
+
+Run:
+
+git status
+
+You should see something similar to:
+
+On branch main
+
+Untracked files:
+  file1
+
+This means:
+
+Git can see file1, but it isn't being tracked yet.
+
+PART 6 — Add file1
+Step 9
+
+Run:
+
+git add file1
+
+Now check:
+
+git status
+
+You should see:
+
+Changes to be committed:
+    new file:   file1
+What happened?
+file1
+  ↓
+git add file1
+  ↓
+Staging Area
+PART 7 — Create your first commit
+Step 10
+
+Run:
+
+git commit -m "Add file1"
+
+You should see something like:
+
+[main abc1234] Add file1
+ 1 file changed
+ create mode 100644 file1
+
+Now your file is committed to your local Git repository.
+
+Important:
+
+Commit does NOT upload your file to GitHub.
+
+It only saves the change in your local Git repository.
+
+PART 8 — Create the GitHub repository
+
+Now open GitHub in your browser and log in.
+
+Step 11: Create a new repository
+
+Click:
+
++ → New repository
+
+You'll see the repository creation page.
+
+For example:
+
+Repository name
+
+Enter:
+
+my-first-project
+Description
+
+Optional:
+
+My first GitHub project
+Visibility
+
+You have two choices:
+
+Public
+Anyone can see your repository.
+
+Private
+Only you and people you authorize can see it.
+
+For learning, I recommend Private if you're going to experiment with personal files.
+
+⚠️ VERY IMPORTANT
+
+You will see options such as:
+
+☐ Add a README file
+☐ Add .gitignore
+☐ Choose a license
+For THIS exercise:
+
+Do NOT select any of them.
+
+Leave them unchecked.
+
+Why?
+
+Because you already have a local Git repository. GitHub's documentation specifically recommends creating the new repository without initializing it with a README, license, or .gitignore when you're pushing an existing local repository, which avoids unnecessary merge conflicts.
+
+So:
+
+Repository name: my-first-project
+
+Description: optional
+
+Public/Private: your choice
+
+☐ Add a README file       ← DON'T SELECT
+☐ Add .gitignore          ← DON'T SELECT
+☐ Choose a license        ← DON'T SELECT
+
+Then click:
+
+Create repository
+
+PART 9 — Copy your GitHub repository URL
+
+After creating the repository, GitHub will show a page with something similar to:
+
+Quick setup
+
+You'll see HTTPS and SSH options.
+
+Select:
+
+HTTPS
+
+The URL will look like:
+
+https://github.com/YOUR_USERNAME/my-first-project.git
+
+Copy that URL.
+
+PART 10 — Connect Ubuntu Git to GitHub
+
+Go back to your Ubuntu terminal.
+
+Make sure you're still inside the directory containing file1.
+
+Check:
+
+pwd
+ls
+
+You should see:
+
+file1
+Step 12: Add GitHub as the remote
+
+Run:
+
+git remote add origin https://github.com/YOUR_USERNAME/my-first-project.git
+Example
+
+If your GitHub username were avyan123:
+
+git remote add origin https://github.com/avyan123/my-first-project.git
+
+Don't copy my example username. Use your actual GitHub username.
+
+PART 11 — Verify the connection
+Step 13
+
+Run:
+
+git remote -v
+
+You should see:
+
+origin  https://github.com/YOUR_USERNAME/my-first-project.git (fetch)
+origin  https://github.com/YOUR_USERNAME/my-first-project.git (push)
+
+This means:
+
+Local Git
+   ↓
+origin
+   ↓
+GitHub
+
+GitHub also recommends checking the remote with git remote -v.
+
+PART 12 — Push your file to GitHub
+
+Now comes the important command.
+
+Step 14
+
+Run:
+
+git push -u origin main
+
+This tells Git:
+
+Push
+ ↓
+origin = GitHub repository
+ ↓
+main = GitHub branch
+
+GitHub's documented flow uses git push -u origin main for this situation.
+
+PART 13 — GitHub authentication
+
+The first time you push using HTTPS, Git may ask:
+
+Username for 'https://github.com':
+
+Enter your GitHub username.
+
+Then it may ask:
+
+Password for 'https://YOUR_USERNAME@github.com':
+⚠️ IMPORTANT
+
+Do NOT enter your normal GitHub password.
+
+GitHub removed password authentication for Git operations over HTTPS. Use a Personal Access Token (PAT) instead.
+
+PART 14 — Create a Personal Access Token
+
+If you don't already have one:
+
+Go to your GitHub account:
+
+Settings → Developer settings → Personal access tokens
+
+GitHub currently provides token options such as fine-grained personal access tokens.
+
+Create a token with access to the repository you're pushing to.
+
+For a simple personal learning repository, give it the minimum repository access necessary to push to that repository.
+
+⚠️ Never send your token to me or anyone else.
+
+When Git asks:
+
+Password:
+
+Paste the token.
+
+Nothing may appear on the screen while you paste/type the token. That's normal.
+
+Press:
+
+Enter
+
+PART 15 — Confirm the push
+
+If everything is successful, you'll see output similar to:
+
+Enumerating objects...
+Counting objects...
+Writing objects...
+To https://github.com/YOUR_USERNAME/my-first-project.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+🎉 Your file1 is now on GitHub.
+
+Go back to your GitHub repository in the browser and refresh the page.
+
+You should see:
+
+my-first-project
+
+file1
+
+Click file1 and you'll see the content you wrote in Ubuntu.
+
+PART 16 — Verify everything from
